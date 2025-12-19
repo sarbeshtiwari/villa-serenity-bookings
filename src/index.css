@@ -6,47 +6,47 @@
 
 @layer base {
   :root {
-    /* Luxurious earthy palette */
-    --background: 40 30% 97%;
-    --foreground: 30 10% 15%;
+    /* Basil Stays brand palette - from logo */
+    --background: 0 0% 98%;
+    --foreground: 25 30% 20%;
 
-    --card: 40 25% 95%;
-    --card-foreground: 30 10% 15%;
+    --card: 0 0% 96%;
+    --card-foreground: 25 30% 20%;
 
-    --popover: 40 30% 97%;
-    --popover-foreground: 30 10% 15%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 25 30% 20%;
 
-    /* Deep forest green */
-    --primary: 150 30% 25%;
-    --primary-foreground: 40 30% 97%;
+    /* Basil green - from logo circle */
+    --primary: 130 55% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Warm sand */
-    --secondary: 35 30% 85%;
-    --secondary-foreground: 30 10% 20%;
+    /* Light green tint */
+    --secondary: 130 30% 92%;
+    --secondary-foreground: 25 30% 20%;
 
-    /* Soft sage */
-    --muted: 120 15% 90%;
-    --muted-foreground: 30 10% 40%;
+    /* Soft neutral */
+    --muted: 130 10% 92%;
+    --muted-foreground: 25 15% 45%;
 
-    /* Gold accent */
-    --accent: 42 70% 55%;
-    --accent-foreground: 30 10% 10%;
+    /* Basil green accent */
+    --accent: 130 55% 40%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 35 20% 85%;
-    --input: 35 20% 85%;
-    --ring: 150 30% 25%;
+    --border: 130 15% 85%;
+    --input: 130 15% 85%;
+    --ring: 130 55% 40%;
 
     --radius: 0.5rem;
 
     /* Custom luxury tokens */
-    --hero-overlay: linear-gradient(180deg, rgba(30, 35, 25, 0.4) 0%, rgba(30, 35, 25, 0.7) 100%);
-    --text-gradient: linear-gradient(135deg, hsl(42 70% 55%) 0%, hsl(35 60% 65%) 100%);
-    --card-shadow: 0 20px 60px -15px rgba(30, 35, 25, 0.15);
-    --card-shadow-hover: 0 30px 80px -15px rgba(30, 35, 25, 0.25);
-    --glow-accent: 0 0 40px rgba(200, 170, 100, 0.3);
+    --hero-overlay: linear-gradient(180deg, rgba(25, 50, 35, 0.5) 0%, rgba(25, 50, 35, 0.75) 100%);
+    --text-gradient: linear-gradient(135deg, hsl(130 55% 40%) 0%, hsl(130 45% 50%) 100%);
+    --card-shadow: 0 20px 60px -15px rgba(25, 50, 35, 0.12);
+    --card-shadow-hover: 0 30px 80px -15px rgba(25, 50, 35, 0.2);
+    --glow-accent: 0 0 40px rgba(76, 175, 80, 0.25);
 
     /* Typography */
     --font-display: 'Cormorant Garamond', serif;
@@ -58,30 +58,30 @@
   }
 
   .dark {
-    --background: 30 15% 8%;
-    --foreground: 40 25% 92%;
+    --background: 130 10% 8%;
+    --foreground: 0 0% 92%;
 
-    --card: 30 15% 12%;
-    --card-foreground: 40 25% 92%;
+    --card: 130 10% 12%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 30 15% 10%;
-    --popover-foreground: 40 25% 92%;
+    --popover: 130 10% 10%;
+    --popover-foreground: 0 0% 92%;
 
-    --primary: 150 35% 40%;
-    --primary-foreground: 30 15% 8%;
+    --primary: 130 50% 45%;
+    --primary-foreground: 130 10% 8%;
 
-    --secondary: 30 20% 18%;
-    --secondary-foreground: 40 25% 92%;
+    --secondary: 130 15% 18%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 30 15% 18%;
-    --muted-foreground: 40 15% 60%;
+    --muted: 130 10% 18%;
+    --muted-foreground: 130 10% 60%;
 
-    --accent: 42 70% 50%;
-    --accent-foreground: 30 15% 8%;
+    --accent: 130 50% 45%;
+    --accent-foreground: 130 10% 8%;
 
-    --border: 30 15% 20%;
-    --input: 30 15% 20%;
-    --ring: 150 35% 40%;
+    --border: 130 10% 20%;
+    --input: 130 10% 20%;
+    --ring: 130 50% 45%;
   }
 }
 
