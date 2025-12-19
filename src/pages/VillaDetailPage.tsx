@@ -1,13 +1,33 @@
 import { useParams, Link } from "react-router-dom";
 import { getVillaById } from "@/data/villas";
 import { Button } from "@/components/ui/button";
-import { Bed, Bath, Users, MapPin, Check, ArrowLeft } from "lucide-react";
-import { useState } from "react";
+import { Bed, Bath, Users, MapPin, Check, ArrowLeft, ChevronLeft, ChevronRight, X, Grid3X3 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const VillaDetailPage = () => {
   const { id } = useParams();
   const villa = getVillaById(id || "");
   const [activeImage, setActiveImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Close lightbox on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxOpen(false);
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    };
+    
+    if (lightboxOpen) {
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+    }
+    
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
+    };
+  }, [lightboxOpen, activeImage]);
 
   if (!villa) {
     return (
@@ -21,6 +41,14 @@ const VillaDetailPage = () => {
       </main>
     );
   }
+
+  const nextImage = () => {
+    setActiveImage((prev) => (prev + 1) % villa.images.length);
+  };
+
+  const prevImage = () => {
+    setActiveImage((prev) => (prev - 1 + villa.images.length) % villa.images.length);
+  };
 
   return (
     <main className="pt-20">
@@ -37,35 +65,136 @@ const VillaDetailPage = () => {
 
       {/* Image Gallery */}
       <section className="container mx-auto px-4 mb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <div className="aspect-[4/3] rounded-xl overflow-hidden">
+        {/* Main Image */}
+        <div className="relative mb-4">
+          <div 
+            className="aspect-[16/9] md:aspect-[21/9] rounded-xl overflow-hidden cursor-pointer group"
+            onClick={() => setLightboxOpen(true)}
+          >
             <img
               src={villa.images[activeImage]}
               alt={villa.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-background/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
+                <Grid3X3 className="w-4 h-4" />
+                <span className="font-body text-sm">View all {villa.images.length} photos</span>
+              </div>
+            </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {villa.images.slice(0, 4).map((image, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveImage(index)}
-                className={`aspect-[4/3] rounded-xl overflow-hidden transition-all ${
-                  activeImage === index
-                    ? "ring-2 ring-primary ring-offset-2"
-                    : "opacity-70 hover:opacity-100"
-                }`}
-              >
-                <img
-                  src={image}
-                  alt={`${villa.name} ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </button>
-            ))}
+          
+          {/* Navigation Arrows */}
+          <button
+            onClick={(e) => { e.stopPropagation(); prevImage(); }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors shadow-lg"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors shadow-lg"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Image Counter */}
+          <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full">
+            <span className="font-body text-sm">{activeImage + 1} / {villa.images.length}</span>
+          </div>
+        </div>
+
+        {/* Thumbnail Strip */}
+        <div className="relative">
+          <div className="overflow-x-auto scrollbar-hide pb-2">
+            <div className="flex gap-3" style={{ width: "max-content" }}>
+              {villa.images.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveImage(index)}
+                  className={`relative flex-shrink-0 w-24 h-16 md:w-32 md:h-20 rounded-lg overflow-hidden transition-all ${
+                    activeImage === index
+                      ? "ring-2 ring-primary ring-offset-2 ring-offset-background"
+                      : "opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`${villa.name} ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div className="fixed inset-0 z-50 bg-black/95 flex flex-col">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4">
+            <span className="text-white/80 font-body">
+              {activeImage + 1} / {villa.images.length}
+            </span>
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <X className="w-5 h-5 text-white" />
+            </button>
+          </div>
+
+          {/* Main Image */}
+          <div className="flex-1 flex items-center justify-center px-4 relative">
+            <button
+              onClick={prevImage}
+              className="absolute left-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+            
+            <img
+              src={villa.images[activeImage]}
+              alt={`${villa.name} ${activeImage + 1}`}
+              className="max-h-[70vh] max-w-full object-contain rounded-lg"
+            />
+            
+            <button
+              onClick={nextImage}
+              className="absolute right-4 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
+            </button>
+          </div>
+
+          {/* Thumbnail Strip in Lightbox */}
+          <div className="p-4">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-2 justify-center" style={{ width: "max-content", margin: "0 auto" }}>
+                {villa.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveImage(index)}
+                    className={`relative flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-md overflow-hidden transition-all ${
+                      activeImage === index
+                        ? "ring-2 ring-white"
+                        : "opacity-40 hover:opacity-80"
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${villa.name} ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Villa Info */}
       <section className="container mx-auto px-4 pb-24">
