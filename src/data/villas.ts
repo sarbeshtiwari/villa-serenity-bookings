@@ -20,19 +20,19 @@ export interface Villa {
 
 export const villas: Villa[] = [
   {
-    id: "serenity-villa",
-    name: "Serenity Villa",
-    location: "Anjuna, North Goa",
+    id: "veena-villa",
+    name: "Veena Villa",
+    location: "North Goa",
     image: villa1,
     images: [villa1, villa2, villa3, villa4],
     bedrooms: 4,
     bathrooms: 4,
     guests: 8,
-    description: "A luxurious beachfront retreat with stunning ocean views and private pool.",
-    longDescription: "Serenity Villa offers an unparalleled escape to paradise. Nestled along the pristine shores of Anjuna Beach, this magnificent property combines traditional Goan architecture with modern luxury. Wake up to the sound of waves, enjoy your morning coffee on the spacious terrace, and spend your days lounging by the infinity pool overlooking the Arabian Sea.",
+    description: "A stunning luxury villa offering a perfect blend of comfort and elegance in North Goa.",
+    longDescription: "Veena Villa is a beautifully designed retreat that offers the perfect escape from the hustle and bustle of city life. Nestled in the serene landscapes of North Goa, this villa combines traditional charm with modern amenities. Enjoy spacious living areas, beautifully landscaped gardens, and proximity to Goa's best beaches and attractions.",
     amenities: [
-      "Private Infinity Pool",
-      "Ocean Views",
+      "Private Pool",
+      "Spacious Living Areas",
       "Fully Equipped Kitchen",
       "Air Conditioning",
       "WiFi",
@@ -43,100 +43,102 @@ export const villas: Villa[] = [
       "24/7 Security"
     ],
     highlights: [
-      "Steps away from Anjuna Beach",
-      "Stunning sunset views",
+      "Close to popular beaches",
+      "Peaceful and serene location",
       "Perfect for families and groups",
-      "Chef service available"
+      "Chef service available on request"
     ]
   },
   {
-    id: "palm-grove-villa",
-    name: "Palm Grove Villa",
+    id: "la-vagator",
+    name: "La Vagator",
     location: "Vagator, North Goa",
     image: villa2,
     images: [villa2, villa1, villa3, villa4],
-    bedrooms: 3,
-    bathrooms: 3,
-    guests: 6,
-    description: "Tropical paradise surrounded by palm trees with a stunning beachfront location.",
-    longDescription: "Palm Grove Villa is your tropical sanctuary in the heart of Vagator. This stunning property is surrounded by swaying palm trees and offers direct access to one of Goa's most beautiful beaches. The villa features an open-plan design that seamlessly blends indoor and outdoor living, perfect for those seeking a true tropical escape.",
+    bedrooms: 6,
+    bathrooms: 6,
+    guests: 12,
+    description: "A luxurious 3BHK villa with 6 elegantly designed rooms including a private jacuzzi room.",
+    longDescription: "La Vagator is our flagship property, a magnificent 3BHK villa featuring 6 uniquely designed rooms spread across a stunning property in the heart of Vagator. Room 5 offers an exclusive experience with a private jacuzzi and serene back area. The villa boasts beautiful outdoor areas perfect for gatherings, parties, or simply relaxing under the Goan sun.",
     amenities: [
-      "Beachfront Access",
+      "6 Luxurious Rooms",
+      "Private Jacuzzi (Room 5)",
+      "Expansive Outdoor Area",
       "Private Pool",
-      "Outdoor Living Area",
-      "Modern Kitchen",
+      "Fully Equipped Kitchen",
       "Air Conditioning",
       "High-Speed WiFi",
-      "Sun Deck",
-      "Hammocks",
-      "Beach Equipment",
+      "Private Parking",
+      "Garden & Lawn",
+      "BBQ & Entertainment Area",
+      "Daily Housekeeping",
+      "24/7 Security"
+    ],
+    highlights: [
+      "Room 5 with private jacuzzi",
+      "Beautiful outdoor entertainment area",
+      "Perfect for large groups and events",
+      "Minutes from Vagator Beach"
+    ]
+  },
+  {
+    id: "la-anjuna",
+    name: "La Anjuna",
+    location: "Anjuna, North Goa",
+    image: villa3,
+    images: [villa3, villa1, villa2, villa4],
+    bedrooms: 4,
+    bathrooms: 4,
+    guests: 8,
+    description: "Experience the vibrant spirit of Anjuna in this beautifully crafted luxury villa.",
+    longDescription: "La Anjuna captures the essence of Goa's most iconic beach destination. Located in the heart of Anjuna, this villa offers easy access to the famous flea markets, beach shacks, and nightlife while providing a peaceful sanctuary to return to. The property features elegant interiors, comfortable bedrooms, and outdoor spaces designed for relaxation.",
+    amenities: [
+      "Private Pool",
+      "Spacious Bedrooms",
+      "Modern Kitchen",
+      "Air Conditioning",
+      "WiFi",
+      "Private Parking",
+      "Sun Loungers",
+      "Outdoor Dining",
+      "Daily Housekeeping",
       "Concierge Service"
     ],
     highlights: [
-      "Direct beach access",
-      "Surrounded by palm gardens",
-      "Ideal for couples and small groups",
-      "Water sports nearby"
+      "Walking distance to Anjuna Beach",
+      "Near famous Anjuna Flea Market",
+      "Vibrant nightlife nearby",
+      "Perfect blend of party and peace"
     ]
   },
   {
-    id: "heritage-house",
-    name: "Heritage House",
-    location: "Fontainhas, Panaji",
-    image: villa3,
-    images: [villa3, villa1, villa2, villa4],
-    bedrooms: 5,
-    bathrooms: 4,
-    guests: 10,
-    description: "A restored Portuguese colonial mansion in the heart of Goa's Latin Quarter.",
-    longDescription: "Step back in time at Heritage House, a meticulously restored Portuguese colonial mansion located in Fontainhas, Goa's UNESCO-recognized Latin Quarter. This architectural gem features original azulejo tiles, high ceilings with wooden beams, and antique furnishings that tell stories of a bygone era. Experience authentic Goan culture while enjoying modern comforts.",
-    amenities: [
-      "Historic Architecture",
-      "Antique Furnishings",
-      "Courtyard Garden",
-      "Library Room",
-      "Air Conditioning",
-      "WiFi",
-      "Walking Distance to Restaurants",
-      "Cultural Tours Arranged",
-      "Traditional Goan Breakfast",
-      "Private Guide Available"
-    ],
-    highlights: [
-      "UNESCO heritage location",
-      "Original Portuguese architecture",
-      "Walking distance to cafes and galleries",
-      "Perfect for history enthusiasts"
-    ]
-  },
-  {
-    id: "sunset-terrace",
-    name: "Sunset Terrace",
-    location: "Candolim, North Goa",
+    id: "lavender-villa",
+    name: "Lavender Villa",
+    location: "North Goa",
     image: villa4,
     images: [villa4, villa1, villa2, villa3],
     bedrooms: 3,
     bathrooms: 3,
     guests: 6,
-    description: "Modern villa with rooftop terrace offering panoramic sunset views over the ocean.",
-    longDescription: "Sunset Terrace is a contemporary masterpiece designed for those who appreciate modern luxury with a touch of Goan charm. The highlight of this villa is its spectacular rooftop terrace, offering 360-degree views perfect for watching the famous Goa sunsets. The villa features clean lines, natural materials, and seamless indoor-outdoor living.",
+    description: "A charming villa with elegant interiors and a tranquil atmosphere for a relaxing getaway.",
+    longDescription: "Lavender Villa offers an intimate and refined escape in North Goa. Named for its serene ambiance, this charming property features elegantly appointed rooms, cozy living spaces, and beautiful gardens that provide the perfect backdrop for a peaceful vacation. Ideal for couples, small families, or friends seeking a quiet retreat.",
     amenities: [
-      "Rooftop Terrace",
-      "Panoramic Views",
-      "Plunge Pool",
-      "Modern Design",
-      "Smart Home Features",
-      "High-Speed WiFi",
-      "Outdoor Dining",
-      "Fire Pit",
-      "Premium Sound System",
-      "Wine Cellar"
+      "Private Pool",
+      "Elegant Interiors",
+      "Fully Equipped Kitchen",
+      "Air Conditioning",
+      "WiFi",
+      "Private Parking",
+      "Garden",
+      "Outdoor Seating",
+      "Daily Housekeeping",
+      "Airport Transfers Available"
     ],
     highlights: [
-      "Best sunset views in Candolim",
-      "Contemporary architecture",
-      "Perfect for entertaining",
-      "Close to beach and restaurants"
+      "Tranquil and peaceful setting",
+      "Perfect for couples and small groups",
+      "Beautifully landscaped gardens",
+      "Close to beaches and restaurants"
     ]
   }
 ];
