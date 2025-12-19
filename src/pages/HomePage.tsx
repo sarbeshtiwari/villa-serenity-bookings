@@ -184,7 +184,7 @@ const HomePage = () => {
                   {[...Array(testimonial.rating)].map((_, i) => (
                     <Star
                       key={i}
-                      className="w-5 h-5 fill-accent text-accent"
+                      className="w-5 h-5 fill-[#e1c30f] text-[#e1c30f]"
                     />
                   ))}
                 </div>

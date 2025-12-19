@@ -50,7 +50,7 @@ const AboutPage = () => {
             </div>
             <div className="relative">
               <img
-                src={villa3}
+                src={'/assets/lavender-villa/33.jpg'}
                 alt="Luxury villa interior"
                 className="w-full rounded-xl shadow-2xl"
               />
