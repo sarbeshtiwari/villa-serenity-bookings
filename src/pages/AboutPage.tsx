@@ -1,6 +1,4 @@
 import { Button } from "@/components/ui/button";
-import aboutHero from "@/assets/about-hero.jpg";
-import villa3 from "@/assets/villa-3.jpg";
 
 const AboutPage = () => {
   return (
@@ -9,7 +7,7 @@ const AboutPage = () => {
       <section className="relative h-[60vh] min-h-[400px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${aboutHero})` }}
+          style={{ backgroundImage: `url('/assets/lavender-villa/2.webp')` }}
         >
           <div className="absolute inset-0 hero-overlay" />
         </div>
@@ -50,7 +48,7 @@ const AboutPage = () => {
             </div>
             <div className="relative">
               <img
-                src={'/assets/lavender-villa/33.jpg'}
+                src={'/assets/lavender-villa/33.webp'}
                 alt="Luxury villa interior"
                 className="w-full rounded-xl shadow-2xl"
               />

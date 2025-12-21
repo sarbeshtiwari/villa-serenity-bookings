@@ -216,10 +216,18 @@ const VillaDetailPage = () => {
                 <Bed className="w-5 h-5" />
                 <span className="font-body">{villa.bedrooms} Bedrooms</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Bath className="w-5 h-5" />
-                <span className="font-body">{villa.bathrooms} Bathrooms</span>
-              </div>
+              {villa.type && (
+                <div className="flex items-center gap-2">
+                  <Bed className="w-5 h-5" />
+                  <span className="font-body">{villa.type} BHK</span>
+                </div>
+              )}
+              {villa.bathrooms && (
+                <div className="flex items-center gap-2">
+                  <Bath className="w-5 h-5" />
+                  <span className="font-body">{villa.bathrooms} Bathrooms</span>
+                </div>
+              )}
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5" />
                 <span className="font-body">Up to {villa.guests} Guests</span>

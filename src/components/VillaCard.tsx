@@ -7,9 +7,10 @@ interface VillaCardProps {
   name: string;
   location: string;
   image: string;
+  type?: number;
   bedrooms: number;
-  bathrooms: number;
-  guests: number;
+  bathrooms?: number;
+  guests: any;
   description: string;
 }
 
@@ -18,6 +19,7 @@ export const VillaCard = ({
   name,
   location,
   image,
+  type,
   bedrooms,
   bathrooms,
   guests,
@@ -56,10 +58,18 @@ export const VillaCard = ({
             <Bed className="w-4 h-4" />
             <span>{bedrooms} Beds</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Bath className="w-4 h-4" />
-            <span>{bathrooms} Baths</span>
-          </div>
+          {type && (
+            <div className="flex items-center gap-1.5">
+              <Bed className="w-4 h-4" />
+              <span>{type} BHK</span>
+            </div>
+          )}
+          {bathrooms && (
+            <div className="flex items-center gap-1.5">
+              <Bath className="w-4 h-4" />
+              <span>{bathrooms} Baths</span>
+            </div>
+          )}
           <div className="flex items-center gap-1.5">
             <Users className="w-4 h-4" />
             <span>{guests} Guests</span>

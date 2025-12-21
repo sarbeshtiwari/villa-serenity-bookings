@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { VillaCard } from "@/components/VillaCard";
 import { villas } from "@/data/villas";
 import { Star, Shield, Heart, Clock } from "lucide-react";
-import heroImage from "@/assets/hero-villa.jpg";
 
 const features = [
   {
@@ -56,7 +55,7 @@ const HomePage = () => {
       <section className="relative h-screen min-h-[700px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          style={{ backgroundImage: `url('/assets/lavender-villa/1.webp')` }}
         >
           <div className="absolute inset-0 hero-overlay" />
         </div>
