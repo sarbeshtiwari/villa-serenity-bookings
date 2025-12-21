@@ -2,13 +2,37 @@ import { useParams, Link } from "react-router-dom";
 import { getVillaById } from "@/data/villas";
 import { Button } from "@/components/ui/button";
 import { Bed, Bath, Users, MapPin, Check, ArrowLeft, ChevronLeft, ChevronRight, X, Grid3X3 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const VillaDetailPage = () => {
   const { id } = useParams();
   const villa = getVillaById(id || "");
   const [activeImage, setActiveImage] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const thumbnailContainerRef = useRef<HTMLDivElement>(null);
+  const lightboxThumbnailRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll thumbnail strip to show active thumbnail
+  useEffect(() => {
+    const scrollToActive = (containerRef: React.RefObject<HTMLDivElement>) => {
+      if (containerRef.current) {
+        const container = containerRef.current;
+        const activeThumb = container.children[activeImage] as HTMLElement;
+        if (activeThumb) {
+          const containerWidth = container.offsetWidth;
+          const thumbLeft = activeThumb.offsetLeft;
+          const thumbWidth = activeThumb.offsetWidth;
+          const scrollLeft = thumbLeft - (containerWidth / 2) + (thumbWidth / 2);
+          container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+        }
+      }
+    };
+    
+    scrollToActive(thumbnailContainerRef);
+    if (lightboxOpen) {
+      scrollToActive(lightboxThumbnailRef);
+    }
+  }, [activeImage, lightboxOpen]);
 
   // Close lightbox on escape key
   useEffect(() => {
@@ -75,6 +99,7 @@ const VillaDetailPage = () => {
               src={villa.images[activeImage]}
               alt={villa.name}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="eager"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
               <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-background/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
@@ -88,12 +113,14 @@ const VillaDetailPage = () => {
           <button
             onClick={(e) => { e.stopPropagation(); prevImage(); }}
             className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors shadow-lg"
+            aria-label="Previous image"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); nextImage(); }}
             className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors shadow-lg"
+            aria-label="Next image"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -106,8 +133,8 @@ const VillaDetailPage = () => {
 
         {/* Thumbnail Strip */}
         <div className="relative">
-          <div className="overflow-x-auto scrollbar-hide pb-2">
-            <div className="flex gap-3" style={{ width: "max-content" }}>
+          <div className="overflow-x-auto pb-2" style={{ scrollbarWidth: 'thin' }}>
+            <div ref={thumbnailContainerRef} className="flex gap-3 overflow-x-auto scroll-smooth" style={{ scrollbarWidth: 'thin' }}>
               {villa.images.map((image, index) => (
                 <button
                   key={index}
@@ -122,6 +149,7 @@ const VillaDetailPage = () => {
                     src={image}
                     alt={`${villa.name} ${index + 1}`}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </button>
               ))}
@@ -170,27 +198,30 @@ const VillaDetailPage = () => {
           </div>
 
           {/* Thumbnail Strip in Lightbox */}
-          <div className="p-4">
-            <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex gap-2 justify-center" style={{ width: "max-content", margin: "0 auto" }}>
-                {villa.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveImage(index)}
-                    className={`relative flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-md overflow-hidden transition-all ${
-                      activeImage === index
-                        ? "ring-2 ring-white"
-                        : "opacity-40 hover:opacity-80"
-                    }`}
-                  >
-                    <img
-                      src={image}
-                      alt={`${villa.name} ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
+          <div className="p-4 overflow-x-auto" style={{ scrollbarWidth: 'thin' }}>
+            <div 
+              ref={lightboxThumbnailRef}
+              className="flex gap-2 overflow-x-auto scroll-smooth mx-auto max-w-full"
+              style={{ scrollbarWidth: 'thin' }}
+            >
+              {villa.images.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveImage(index)}
+                  className={`relative flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-md overflow-hidden transition-all ${
+                    activeImage === index
+                      ? "ring-2 ring-white"
+                      : "opacity-40 hover:opacity-80"
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`${villa.name} ${index + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </button>
+              ))}
             </div>
           </div>
         </div>
